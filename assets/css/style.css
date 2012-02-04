@@ -203,9 +203,95 @@ td { vertical-align: top; }
 
 
 /* ==|== primary styles =====================================================
-   Author: Backbone Boilerplate <Change to your Name>
+   Author: Brandon John-Freso & Lucas Paulger of AtomicFlow Tech+Design
    ========================================================================== */
+.full{
+  width: 100%;
+}
+body{
+  background: #FFF url("/assets/img/background/leather.png");
+  overflow: hidden;
+}
+h1{
+  font-family: "AcensRegular";
+}
 
+h1#appTitle a{
+  color: #7C7C7B;
+  font-size: 27px;
+  line-height: 50px;
+  padding: 0;
+}
+#mainHeader{
+  height: 50px;
+  background: url("/assets/img/background/trans/EBEBEB_65.png") repeat;
+  border-bottom: #707070 10px solid;
+}
+
+#headerLogoIcon{
+  position: absolute;
+  top: 3px;
+  left:10px;
+}
+#mainContainer{
+  height: 600px;
+  margin-top: 50px;
+}
+nav a{
+  
+}
+#sidebarNav a{
+  text-transform: uppercase;
+  font-size:46px;
+  color: #65676C;
+}
+footer{
+  height:345px;
+  background: url("/assets/img/background/blackLinen.png") repeat;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Styles for their tutorial*/
 #main {
   margin: 40px;
   font-size: 14px;
