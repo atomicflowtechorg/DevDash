@@ -20,10 +20,8 @@
   });
   console.log(TaskModule.Task);
   TaskModule.TaskList = Backbone.Collection.extend({
-    // model: TaskModule.Task,
+    model: TaskModule.Task,
     url: "http://devdashapi.atomicflowtech.com/api/tasks/"
-    
-
   });
   TaskModule.Router = Backbone.Router.extend({ /* ... */ });
 
@@ -35,7 +33,12 @@
     render: function(done) {
       var view = this;
       alert("loading list...");
-      TaskModule.tasks = new TaskModule.TaskList(); 
+      TaskModule.tasks = new TaskModule.TaskList();
+      TaskModule.tasks.fetch({
+                success: function() {
+                    console.log(TaskModule.tasks.toJSON());
+                }
+            });   
       console.log(TaskModule.tasks);
       alert("loaded list...");
 
