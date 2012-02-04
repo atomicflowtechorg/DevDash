@@ -1,28 +1,28 @@
 jQuery(function($) {
-  var Example, Router, app;
-  app = namespace.app;
-  Example = namespace.module("example");
+  var TaskModule, Router, app;
+  app = devdash.app;
+  TaskModule = devdash.module("taskmodule");
   Router = Backbone.Router.extend({
     routes: {
-      "": "devdash", 
+      "": "index", 
       devdash: "devdash",
       tutorial: "tutorial",
       ":hash": "index"
     },
-    devdash: function(hash) {
-      var route, test;
+    index: function(hash) {
+      var route, tutorial;
       route = this;
-      devdash = new Example.Views.Tutorial();
-      return devdash.render(function(el) {
-        // return $("#main").html(el);
+      tutorial = new TaskModule.Views.Tutorial();
+      return tutorial.render(function(el) {
+         return $("#dataDisplay").html(el);
       });
     },
     tutorial: function(hash) {
       var route, tutorial;
       route = this;
-      tutorial = new Example.Views.Tutorial();
+      tutorial = new TaskModule.Views.Tutorial();
       return tutorial.render(function(el) {
-        $("#main").html(el);
+        $("#dataDisplay").html(el);
         if (hash && !route._alreadyTriggered) {
           Backbone.history.navigate("", false);
           location.hash = hash;
