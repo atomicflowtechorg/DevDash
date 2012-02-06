@@ -1,7 +1,8 @@
 // Change *namespace* to your namespace!
 // This contains the module definition factory function, application state,
 // events, and the router.
-this.devdash = {
+  this.username="BrandonJF";
+  this.devdash = {
   // Assist with code organization, by breaking up logical components of code
   // into modules.
   module: function() {
@@ -24,9 +25,9 @@ this.devdash = {
   // build process every time you change a template.
   //
   // Delete if you are using a different template loading method.
-  fetchTemplate: function(path, done) {
+ getTemplate: function(path, underscoreObject, done) {
     window.JST = window.JST || {};
-
+    console.log(underscoreObject);
     // Should be an instant synchronous way of getting the template, if it
     // exists in the JST object.
     if (JST[path]) {
@@ -35,12 +36,18 @@ this.devdash = {
 
     // Fetch it asynchronously if not available from JST
     return $.get(path, function(contents) {
-      var tmpl = _.template(contents);
+      // var tmpl2 = _.template(contents);
+      // console.log(tmpl2);
+
+      var tmpl = _.template(contents,underscoreObject);
+      //console.log(tmpl);
       JST[path] = tmpl;
 
       done(tmpl);
     });
   },
+
+  setupUser: function(){console.log(this); this[username] = "Brandon"; },
 
   // Keep active application instances namespaced under an app object.
   app: _.extend({}, Backbone.Events)
