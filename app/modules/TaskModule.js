@@ -16,12 +16,12 @@
 (function(TaskModule) {
 
   TaskModule.Task = Backbone.Model.extend({ 
-    url: "http://devdashapi.atomicflowtech.com/api/tasks"
+    url: "http://devdashapi.atomicflowtech.com/api/tasks/format/jsonp?callback=tasks"
   });
   console.log(TaskModule.Task);
   TaskModule.TaskList = Backbone.Collection.extend({
     model: TaskModule.Task,
-    url: "http://devdashapi.atomicflowtech.com/api/tasks/"
+    url: "http://devdashapi.atomicflowtech.com/api/tasks/format/jsonp?callback=tasks"
   });
   TaskModule.Router = Backbone.Router.extend({ /* ... */ });
 
