@@ -18,16 +18,17 @@
   TaskModule.Task = Backbone.Model.extend({ 
     url: "http://devdashapi.atomicflowtech.com/api/tasks"
   });
-  console.log(TaskModule.Task);
+  
   TaskModule.TaskList = Backbone.Collection.extend({
     model: TaskModule.Task,
     url: "http://devdashapi.atomicflowtech.com/api/tasks"
   });
+
   TaskModule.Router = Backbone.Router.extend({ /* ... */ });
 
-  // This will fetch the tutorial template and render it.
+  // This will fetch the taskView template and render it.
   TaskModule.Views.Tutorial = Backbone.View.extend({
-    template: "app/templates/example.html",
+    template: "app/templates/taskView.html",
 
     
     render: function(done) {
@@ -47,6 +48,7 @@
         view.el.innerHTML = tmpl();
 
         done(view.el);
+       
       });
     }
   });

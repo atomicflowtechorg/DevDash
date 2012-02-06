@@ -14,7 +14,7 @@ jQuery(function($) {
       route = this;
       tutorial = new TaskModule.Views.Tutorial();
       return tutorial.render(function(el) {
-         return $("#dataDisplay").html(el);
+         return $("#dataDisplayContent").html(el);
       });
     },
     tutorial: function(hash) {
