@@ -208,9 +208,15 @@ td { vertical-align: top; }
 .full{
   width: 100%;
 }
+
+html{
+  overflow-x: hidden;
+  overflow: hidden;
+}
 body{
   background: #FFF url("/assets/img/background/leather.png");
   overflow: hidden;
+
 }
 h1{
   font-family: Arial, Helvetica, sans-serif;
@@ -241,7 +247,7 @@ h2{
 }
 #mainContainer{
   height: 600px;
-  margin-top: 50px;
+  margin-top: 40px;
   overflow: hidden;
 }
 nav a{
@@ -251,6 +257,24 @@ nav a{
   text-transform: uppercase;
   font-size:46px;
   color: #65676C;
+}
+#dataDisplay{
+overflow: visible;
+}
+
+#dataDisplayHeader{
+  background: url("/assets/img/background/trans/EBEBEB_65.png") repeat;
+  width:1000px;
+  position: absolute;
+  padding-left:10px;
+  padding-top:22px;
+  padding-bottom:22px;
+
+  
+}
+
+#dataDisplayContent{
+  margin-top:80px;
 }
 footer{
   height:345px;
@@ -298,75 +322,11 @@ footer{
 
 
 
-/*Styles for their tutorial*/
-#main {
-  margin: 40px;
-  font-size: 14px;
-}
 
-#main pre {
-  min-width: 320px;
-  border-radius: 10px;
-  color: #333;
-  font-weight: normal;
-  font-size: 12px;
-  display: inline-block;
-  padding-right: 40px;
-  background: #F8FAFC;
-}
 
-#main a {
-  color: #00CCFF;
-}
 
-#main a:hover {
-  color: #FE57A1;
-}
 
-#main img {
-  width: 320px;
-  height: auto;
-}
 
-#main p {
-  line-height: 28px;
-}
-
-#main ul.nested {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-#main ul li {
-  line-height: 28px;
-}
-
-#main header h1 {
-  margin: 15px;
-  display: inline-block;
-  color: #333;
-}
-
-#main header h2:not(.congrats) {
-  color: #666;
-  margin: 0; padding: 0;
-}
-
-#main header .congrats {
-  padding-bottom: 0;
-  margin-bottom: 0;
-  color: #00CCFF;
-  display: inline-block;
-  font-size: 28px;
-}
-
-#main .topic {
-  color: #CCC;
-}
-
-#main .clues {
-  color: #FE57A1;
-}
 
 
 /* ==|== media queries ======================================================

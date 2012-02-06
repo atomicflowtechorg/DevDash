@@ -1,8 +1,8 @@
 jQuery(function($) {
-  var TaskModule, UserModule, Router, app;
+  _.templateSettings = {interpolate : /\{\{([\s\S]+?)\}\}/g};
+  var TaskModule, Router, app;
   app = devdash.app;
   TaskModule = devdash.module("taskmodule");
-  UserModule = devdash.module("usermodule");
   Router = Backbone.Router.extend({
     routes: {
       "": "index", 
@@ -11,19 +11,17 @@ jQuery(function($) {
       ":hash": "index"
     },
     index: function(hash) {
-      var route,users, tutorial;
+      var route, tutorial;
       route = this;
       tutorial = new TaskModule.Views.Tutorial();
-      users = new UserModule.Views.Users();
-      return tutorial.render(function(el) {
-         return $("#dataDisplayContent").html(el);
+      tutorial.render(function(el) {
+         $("#dataDisplayContent").html(el);
       });
     },
     tutorial: function(hash) {
       var route, tutorial;
       route = this;
       tutorial = new TaskModule.Views.Tutorial();
-      users = new UserModule.Views.Users();
       return tutorial.render(function(el) {
         $("#dataDisplay").html(el);
         if (hash && !route._alreadyTriggered) {

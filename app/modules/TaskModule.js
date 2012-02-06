@@ -16,7 +16,7 @@
 (function(TaskModule) {
 
   TaskModule.Task = Backbone.Model.extend({ 
-    url: "http://devdashapi.atomicflowtech.com/api/tasks"
+    // probably can delete - url: "http://devdashapi.atomicflowtech.com/api/tasks"
   });
   
   TaskModule.TaskList = Backbone.Collection.extend({
@@ -29,27 +29,27 @@
   // This will fetch the taskView template and render it.
   TaskModule.Views.Tutorial = Backbone.View.extend({
     template: "app/templates/taskView.html",
+    //el: $("#dataDisplayContent"),
 
-    
-    render: function(done) {
-      var view = this;
-      alert("loading list...");
+    initialize: function() {
       TaskModule.tasks = new TaskModule.TaskList();
       TaskModule.tasks.fetch({
-                success: function() {
-                    console.log(TaskModule.tasks.toJSON());
+        success: function() {
+          console.log (TaskModule.tasks.toJSON());
+         console.log( _.pluck( TaskModule.tasks.toJSON(), 'name') );
                 }
             });   
-      console.log(TaskModule.tasks);
-      alert("loaded list...");
+        // this.render();
+    },
 
+    render: function(doneFunction) {
+      var view = this;
+      // var html = ich.tasks(this.template);
       // Fetch the template, render it to the View element and call done.
-      devdash.fetchTemplate(this.template, function(tmpl) {
-        view.el.innerHTML = tmpl();
-
-        done(view.el);
-       
-      });
+      var info = {"id":"94","name":"Another Task Post With API","assignedTo":"brandonjf","listId":"9","status":"Assigned","notes":"I made this task with the API and Post\r\n\r\nword","dateDue":"0000-00-00 00:00:00","dateCompleted":"0000-00-00 00:00:00"}
+      devdash.getTemplate(this.template,info, function(tmpl) {view.el.innerHTML = tmpl; doneFunction(view.el);} );
+      _.each(TaskModule.tasks.toJSON(), function(task){alert(task)});
+       console.log (TaskModule.tasks.toJSON());
     }
   });
 
