@@ -1,7 +1,8 @@
 jQuery(function($) {
-  var TaskModule, Router, app;
+  var TaskModule, UserModule, Router, app;
   app = devdash.app;
   TaskModule = devdash.module("taskmodule");
+  UserModule = devdash.module("usermodule");
   Router = Backbone.Router.extend({
     routes: {
       "": "index", 
@@ -10,9 +11,10 @@ jQuery(function($) {
       ":hash": "index"
     },
     index: function(hash) {
-      var route, tutorial;
+      var route,users, tutorial;
       route = this;
       tutorial = new TaskModule.Views.Tutorial();
+      users = new UserModule.Views.Users();
       return tutorial.render(function(el) {
          return $("#dataDisplayContent").html(el);
       });
@@ -21,6 +23,7 @@ jQuery(function($) {
       var route, tutorial;
       route = this;
       tutorial = new TaskModule.Views.Tutorial();
+      users = new UserModule.Views.Users();
       return tutorial.render(function(el) {
         $("#dataDisplay").html(el);
         if (hash && !route._alreadyTriggered) {
