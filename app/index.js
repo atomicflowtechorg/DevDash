@@ -1,48 +1,64 @@
-jQuery(function($) {
-  _.templateSettings = {interpolate : /\{\{([\s\S]+?)\}\}/g};
-  var TaskModule, Router, app;
-  app = devdash.app;
-  TaskModule = devdash.module("taskmodule");
-  Router = Backbone.Router.extend({
-    routes: {
-      "": "index", 
-      devdash: "devdash",
-      tutorial: "tutorial",
-      ":hash": "index"
-    },
-    index: function(hash) {
-      var route, tutorial;
-      route = this;
-      tutorial = new TaskModule.Views.Tutorial();
-      tutorial.render(function(el) {
-         $("#dataDisplayContent").html(el);
-      });
-    },
-    tutorial: function(hash) {
-      var route, tutorial;
-      route = this;
-      tutorial = new TaskModule.Views.Tutorial();
-      return tutorial.render(function(el) {
-        $("#dataDisplay").html(el);
-        if (hash && !route._alreadyTriggered) {
-          Backbone.history.navigate("", false);
-          location.hash = hash;
-          return route._alreadyTriggered = true;
+$(function () {
+    var username = "lucasmp";
+    //var username = prompt("enter your username","lucasmp");
+    
+    var AppRouter = Backbone.Router.extend({
+        routes: {
+            ""          : "tasklist",
+            "tasks/:id" : "taskDetails",
+            "tasksUpdate/:id" : "taskUpdate"
+        },
+ 
+        tasklist: function() {
+            console.log('Loading: tasklist');
+            this.taskList = new TaskCollection();
+            this.taskListView = new TaskListView({
+                model: this.taskList
+            });
+            this.taskList.fetch();
+        },
+ 
+        taskDetails: function(id) {
+            console.log('Loading: taskDetails');
+            this.task = this.taskList.get(id);
+            this.taskView = new TaskView({
+                model: this.task
+            });
+            this.taskView.render();
+        },
+        taskUpdate: function(id) {
+            console.log('updating task');
+            this.task = this.taskList.get(id);
+            
+            var new_name = prompt("enter new name",this.task.get("name"));
+            this.task.set({
+                name:new_name
+            });
+            this.taskView = new TaskView({
+                model: this.task
+            });
+            this.taskView.render();
+            this.task.save({
+                success:function(){
+                    alert("success!");
+                },
+                error: function(){
+                    alert("failure");
+                }
+            })
         }
-      });
-    }
-  });
-  app.router = new Router();
-  Backbone.history.start({
-    pushState: true
-  });
-  return $(document).on("click", "a:not([data-bypass])", function(evt) {
-    var href, protocol;
-    href = $(this).attr("href");
-    protocol = this.protocol + "//";
-    if (href && href.slice(0, protocol.length) !== protocol) {
-      evt.preventDefault();
-      return app.router.navigate(href, true);
-    }
-  });
+    });
+    tpl.loadTemplates(['task-details', 'task-list-item'], function(){
+        
+    });
+    app = new AppRouter();
+    Backbone.history.start();
+
 });
+
+//Example Link to test functionality
+//$('#tasks').click(function () {
+//    alert(tasks.url);
+//    var tasksNames = tasks.pluck("fldName");
+//    alert(JSON.stringify(tasksNames));
+//});
